@@ -6,7 +6,7 @@
 #    By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 12:48:23 by gmelisan          #+#    #+#              #
-#    Updated: 2018/11/20 14:27:13 by gmelisan         ###   ########.fr        #
+#    Updated: 2018/11/20 19:24:58 by gmelisan         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -26,6 +26,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -f test_exe
 
 re: fclean all
 

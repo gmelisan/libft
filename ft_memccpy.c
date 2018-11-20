@@ -6,7 +6,7 @@
 /*   By: gmelisan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 17:59:20 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/20 18:16:17 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/11/20 18:57:49 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 	{
 		if (*((t_uchar *)src + i) == u_c)
 		{
-			return ((t_uchar *)src + i + 1);
+			*((t_uchar *)dst + i) = *((t_uchar *)src + i);
+			i++;
+			return ((t_uchar *)dst + i);
 		}
 		*((t_uchar *)dst + i) = *((t_uchar *)src + i);
 		i++;

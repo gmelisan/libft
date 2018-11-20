@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 13:58:49 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/20 18:32:31 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/11/20 19:23:04 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,9 @@ void	test_memcpy()
 void	test_memccpy()
 {
 	printf("=== Testing ft_memccpy  ===\n");
-	char str1[20] = "..........";
-	char str2[20] = "..........";
+	printf("* note: if c=~, then c = null pointer\n");
+	char str1[20] = ".......a..";
+	char str2[20] = ".......a..";
 	char src[20] =  "1234.56789";
 
 	printf("\tTest1 ");
@@ -128,8 +129,31 @@ void	test_memccpy()
 	else
 	{
 		printf("ERROR\n");
-		printf("\t    >%s, c=%c\n", str1, *c1);
-		printf("\tft_ >%s, c=%c\n", str2, *c2);
+		printf("\t    >%s; c=%c\n", str1, *c1);
+		printf("\tft_ >%s; c=%c\n", str2, *c2);
+	}
+
+	char str1_2[50];
+	char str2_2[50];
+	char src_2[50] = "Hello darkness my old friend";
+
+	printf("\tTest2 ");
+	
+	c1 = memccpy(str1_2, src_2, '1', 20);
+	c2 = ft_memccpy(str2_2, src_2, '1', 20);
+	if (strcmp(str1_2, str2_2) == 0 && *c1 == *c2)
+	{
+		printf("ok\n");
+		
+		printf("\t    >%s; c=%c\n", str1_2, c1 ? *c1 : '~');
+		printf("\tft_ >%s; c=%c\n", str2_2, c2 ? *c2 : '~');
+	}
+	else
+	{
+		printf("ERROR\n");
+		
+		printf("\t    >%s; c=%c\n", str1_2, c1 ? *c1 : '~');
+		printf("\tft_ >%s; c=%c\n", str2_2, c2 ? *c2 : '~');
 	}
 }
 
