@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 16:21:46 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/21 19:41:42 by gmelisan         ###   ########.fr       */
+/*   Created: 2018/11/21 17:35:55 by gmelisan          #+#    #+#             */
+/*   Updated: 2018/11/21 19:43:58 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+int		ft_memcmp(const void *b1, const void *b2, size_t len)
 {
-	if (n == 0)
-		return ;
-	ft_memset(s, 0, n);
+	size_t i;
+	t_uchar cb1;
+	t_uchar cb2;
+
+	i = 0;
+	while (i < len)
+	{
+		cb1 = *((t_uchar *)b1 + i);
+		cb2 = *((t_uchar *)b2 + i);
+		if (cb1 != cb2)
+			return (cb1 - cb2);
+		i++;
+	}
+	return (0);
 }
