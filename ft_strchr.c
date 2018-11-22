@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmelisan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/21 19:56:00 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/22 11:23:23 by gmelisan         ###   ########.fr       */
+/*   Created: 2018/11/22 12:47:30 by gmelisan          #+#    #+#             */
+/*   Updated: 2018/11/22 12:57:35 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+char	*ft_strchr(const char *s, int c)
 {
-	char	*copy;
-	size_t	len;
+	char	cc;
+	size_t	i;
 
-	len = ft_strlen(s1);
-	copy = (char *)malloc(len + 1);
-	if (!copy)
+	cc = (char)c;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == cc)
+			return ((char *)&s[i]);
+		i++;
+	}
+	if (c == '\0')
+		return ((char *)&s[i]);
+	else
 		return (NULL);
-	ft_memcpy(copy, s1, len);
-	copy[len] = '\0';
-	return (copy);
 }

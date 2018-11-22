@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 13:58:49 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/21 21:43:49 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/11/22 16:50:32 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -342,7 +342,7 @@ void	test_memcmp(void)
 	printf("\tTest1 ");
 	if (n1 < 0 && n2 < 0)
 	{
-		printf("ok\n");
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
 	}
 	else
 	{
@@ -359,7 +359,7 @@ void	test_memcmp(void)
 	printf("\tTest2 ");
 	if (n1 > 0 && n2 > 0)
 	{
-		printf("ok\n");
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
 	}
 	else
 	{
@@ -375,7 +375,7 @@ void	test_memcmp(void)
 	printf("\tTest2 ");
 	if (n1 == 0 && n2 == 0)
 	{
-		printf("ok\n");
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
 	}
 	else
 	{
@@ -622,9 +622,501 @@ void	test_strcat(void)
 		printf("ERROR\t\t!!!\n");
 		printf("\t'%s' !=\n\t'%s'\n", res1, res2);
 	}
+}
+
+
+void	test_strncat(void)
+{
+	char *res1;
+	char *res2;
+
+	printf("=== Testing ft_strncat ===\n");
+	char str1[] = "hello,";
+	char str2[] = "world.";
 	
+	res1 = (char *)malloc(50);
+	res2 = (char *)malloc(50);
+	bzero(res1, 50);
+	bzero(res2, 50);
+
+	strcat(res1, str1);
+	strcat(res2, str1);
+
+	strncat(res1, str2, 3);
+	ft_strncat(res2, str2, 3);
+	
+	printf("\tTest1 ");
+	if (strcmp(res1, res2) == 0)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\t'%s' !=\n\t'%s'\n", res1, res2);
+	}
+
+	bzero(res1, 50);
+	bzero(res2, 50);
+
+	strcat(res1, str1);
+	strcat(res2, str1);
+
+	strncat(res1, str2, 40);
+	ft_strncat(res2, str2, 40);
+	
+	printf("\tTest2 ");
+	if (strcmp(res1, res2) == 0)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\t'%s' !=\n\t'%s'\n", res1, res2);
+	}
+}
+
+void	test_strlcat(void)
+{
+	int n;
+	char buf1[10];
+	char buf2[10];
+	bzero(buf1, 10);
+	bzero(buf2, 10);
+
+	printf("=== Testing ft_strlcat ===\n");
+
+	char str1[] = "Hello,";
+	char str2[] = "World.";
+
+	/* n = ft_strlcat(buf1, str1, 10); */
+	/* printf("'%s'\t%d\n", buf1, n); */
+	/* n = ft_strlcat(buf1, str2, 0); */
+	/* printf("'%s'\t%d\n", buf1, n); */
+
+	
+	printf("\tERROR\t\t!!!\n");
+	
+	/* n = ft_strlcat(buf2, str1, 10); */
+	/* printf("'%s'\t%d\n", buf2, n); */
+	/* n = ft_strlcat(buf2, str2, 3); */
+	/* printf("'%s'\t%d\n", buf2, n); */
+
+	/*
+	  9 - 12
+	  8 - 12
+	  7 - 12
+	  6 - 12
+	  5 - 11
+	  4 - 10
+	  3 - 9
+	  2 - 8
+	  1 - 7
+	  0 - 6
+	 */
 	
 }
+
+void	test_strchr(void)
+{
+
+	printf("=== Testing ft_strchr ===\n");
+
+	char str1[] = "abcdefghijklmnop";
+	char str2[] = "abcdefghijklmnop";
+	char *a;
+	char *b;
+
+	a = strchr(str1, 'k');
+	b = ft_strchr(str2, 'k');
+	
+	printf("\tTest1 ");
+	if (strcmp(a, b) == 0)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\t'%s' !=\n\t'%s'\n", a, b);
+	}
+	printf("\tTest2 ");
+	if (strcmp(str1, str2) == 0)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\t'%s' !=\n\t'%s'\n", str1, str2);
+	}
+	a = strchr(str1, 'z');
+	b = ft_strchr(str2, 'z');
+	
+	printf("\tTest1 ");
+	if (a == NULL && b == NULL)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\t Expected null pointer\n");
+	}
+	a = strchr(str1, '\0');
+	b = ft_strchr(str2, '\0');
+	
+	printf("\tTest1 ");
+	if (*a == 0 && *b == 0)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tValues of 'a' and/or 'b' not 0\n");
+	}
+	
+}
+
+void	test_strrchr(void)
+{
+
+	printf("=== Testing ft_strrchr ===\n");
+
+	char str1[] = "abababababcdef";
+	char str2[] = "abababababcdef";
+	char *a;
+	char *b;
+
+	a = strrchr(str1, 'a');
+	b = ft_strrchr(str2, 'a');
+	
+	printf("\tTest1 ");
+	if (strcmp(a, b) == 0)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\t'%s' !=\n\t'%s'\n", a, b);
+	}
+	printf("\tTest2 ");
+	if (strcmp(str1, str2) == 0)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\t'%s' !=\n\t'%s'\n", str1, str2);
+	}
+	a = strchr(str1, 'z');
+	b = ft_strchr(str2, 'z');
+	
+	printf("\tTest3 ");
+	if (a == NULL && b == NULL)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\t Expected null pointer\n");
+	}
+	a = strchr(str1, '\0');
+	b = ft_strchr(str2, '\0');
+	
+	printf("\tTest4 ");
+	if (*a == 0 && *b == 0)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tValues of 'a' and/or 'b' not 0\n");
+	}
+	
+}
+
+void	test_strstr(void)
+{
+	char str[] = "String contains substring in string";
+	char sub[] = "substring";
+	char sub2[] = "no substring";
+	char *res1;
+	char *res2;
+
+	printf("=== Testing ft_strstr ===\n");
+	res1 = strstr(str, sub);
+	res2 = ft_strstr(str, sub);
+	
+	printf("\tTest1 ");
+	if (strcmp(res1, res2) == 0)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\t'%s' !=\n\t'%s'\n", res1, res2);
+	}
+
+	res1 = strstr(str, sub2);
+	res2 = ft_strstr(str, sub2);
+	
+	printf("\tTest2 ");
+	if (res1 == NULL && res2 == NULL)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("Expected null pointer");
+	}
+	res1 = strstr(str, "");
+	res2 = ft_strstr(str, "");
+	
+	printf("\tTest3 ");
+	if (strcmp(res1, res2) == 0)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\t'%s' !=\n\t'%s'\n", res1, res2);
+	}
+
+}
+
+void	test_strnstr(void)
+{
+	char str[] = ".String contains substring in String";
+	char sub2[] = "String";
+	char *res1;
+	char *res2;
+
+	printf("=== Testing ft_strnstr ===\n");
+	res1 = strnstr(str, sub2, 10);
+	res2 = ft_strnstr(str, sub2, 10);
+	
+	printf("\tTest1 ");
+	if (strcmp(res1, res2) == 0)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\t'%s' !=\n\t'%s'\n", res1, res2);
+	}
+
+	res1 = strnstr(str, sub2, 3);
+	res2 = ft_strnstr(str, sub2, 3);
+	
+	printf("\tTest2 ");
+	if (res1 == NULL && res2 == NULL)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\t'%s' !=\n\t'%s'\n", res1, res2);
+	}
+	res1 = strnstr(str, sub2, 100);
+	res2 = ft_strnstr(str, sub2, 100);
+	
+	printf("\tTest3 ");
+	if (strcmp(res1, res2) == 0)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\t'%s' !=\n\t'%s'\n", res1, res2);
+	}
+
+	res1 = strnstr(str, sub2, 0);
+	res2 = ft_strnstr(str, sub2, 0);
+	
+	printf("\tTest4 ");
+	if (res1 == NULL && res2 == NULL)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\t'%s' !=\n\t'%s'\n", res1, res2);
+	}
+	res1 = strnstr(str, "", 10);
+	res2 = ft_strnstr(str, "", 10);
+	
+	printf("\tTest5 ");
+	if (strcmp(res1, res2) == 0)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\t'%s' !=\n\t'%s'\n", res1, res2);
+	}
+}
+void	test_strcmp(void)
+{
+	char str1[10];
+	char str2[10];
+	int n1;
+	int n2;
+	char str1_2[] = "ab";
+	char str2_2[] = "abc";
+	char str1_3[] = "despera\0teon";
+	char str2_3[] = "despera\0tion";
+
+	printf("=== Testing ft_strcmp ===\n");
+	
+	str1[0] = 200;
+	str1[1] = 0;
+
+	str2[0] = 10;
+	str2[1] = 0;
+
+	n1 = strcmp(str1, str2);
+	n2 = ft_strcmp(str1, str2);
+
+	printf("\tTest1 ");
+	if (n1 > 0 && n2 > 0)
+	{
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("Should be greater than 0:\tn1=%d, n2=%d\n", n1, n2);
+	}
+	n1 = strcmp(str1_2, str2_2);
+	n2 = ft_strcmp(str1_2, str2_2);
+
+	printf("\tTest2 ");
+	if (n1 < 0 && n2 < 0)
+	{
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("Should be less than 0:\tn1=%d, n2=%d\n", n1, n2);
+	}
+	n1 = strcmp(str1_3, str2_3);
+	n2 = ft_strcmp(str1_3, str2_3);
+
+	printf("\tTest2 ");
+	if (n1 == 0 && n2 == 0)
+	{
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("Should be equal to 0:\tn1=%d, n2=%d\n", n1, n2);
+	}
+}
+
+void	test_strncmp(void)
+{
+	char str1[10];
+	char str2[10];
+	int n1;
+	int n2;
+	char str1_2[] = "ab";
+	char str2_2[] = "abc";
+	char str1_3[] = "despera1\0teon";
+	char str2_3[] = "despera\0tion";
+
+	printf("=== Testing ft_strncmp ===\n");
+	
+	str1[0] = 200;
+	str1[1] = 0;
+
+	str2[0] = 10;
+	str2[1] = 0;
+
+	n1 = strncmp(str1, str2, 1);
+	n2 = ft_strncmp(str1, str2, 1);
+
+	printf("\tTest1 ");
+	if (n1 > 0 && n2 > 0)
+	{
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("Should be greater than 0:\tn1=%d, n2=%d\n", n1, n2);
+	}
+	n1 = strncmp(str1_2, str2_2, 4);
+	n2 = ft_strncmp(str1_2, str2_2, 4);
+
+	printf("\tTest2 ");
+	if (n1 < 0 && n2 < 0)
+	{
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("Should be less than 0:\tn1=%d, n2=%d\n", n1, n2);
+	}
+	n1 = strncmp(str1_2, str2_2, 2);
+	n2 = ft_strncmp(str1_2, str2_2, 2);
+
+	printf("\tTest3 ");
+	if (n1 == 0 && n2 == 0)
+	{
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("Should equal to 0:\tn1=%d, n2=%d\n", n1, n2);
+	}
+	n1 = strncmp(str1_3, str2_3, 8);
+	n2 = ft_strncmp(str1_3, str2_3, 8);
+
+	printf("\tTest4 ");
+	if (n1 > 0 && n2 > 0)
+	{
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("Should be greater than 0:\tn1=%d, n2=%d\n", n1, n2);
+	}
+	n1 = strncmp(str1_3, str2_3, 0);
+	n2 = ft_strncmp(str1_3, str2_3, 0);
+
+	printf("\tTest5 ");
+	if (n1 == 0 && n2 == 0)
+	{
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("Should be equal to 0:\tn1=%d, n2=%d\n", n1, n2);
+	}
+}
+
+
 int		main(void)
 {
 	test_memset();
@@ -633,10 +1125,18 @@ int		main(void)
 	test_memccpy();
 	test_memmove();
 	test_memchr();
-	test_memcmp(); // you know...
+	test_memcmp();
 	test_strlen();
 	test_strdup();
 	test_strcpy();
 	test_strncpy();
 	test_strcat();
+	test_strncat();
+	test_strlcat();
+	test_strchr();
+	test_strrchr();
+	test_strstr();
+	test_strnstr();
+	test_strcmp();
+	test_strncmp();
 }

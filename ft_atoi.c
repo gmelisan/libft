@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 17:59:20 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/22 17:33:50 by gmelisan         ###   ########.fr       */
+/*   Created: 2018/11/22 16:53:16 by gmelisan          #+#    #+#             */
+/*   Updated: 2018/11/22 17:42:03 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
-{
-	size_t	i;
-	t_uchar	u_c;
+int		ft_atoi(const char *str)
+{	
+	int result;
+	int i;
+	int sign;
 
-	u_c = (t_uchar)c;
+	result = 0;
 	i = 0;
-	while (i < n)
+	sign = 1;
+	while (ft_isspace(str[i]))
+		i++;
+	if (!ft_isdigit(str[i]) && str[i] != '+' && str[i] != '-')
+		return (result);
+	if (str[i] == '+')
+		i++;
+	else if (str[i] == '-')
 	{
-		if (*((t_uchar *)src + i) == u_c)
-		{
-			*((t_uchar *)dst + i) = *((t_uchar *)src + i);
-			i++;
-			return ((t_uchar *)dst + i);
-		}
-		*((t_uchar *)dst + i) = *((t_uchar *)src + i);
+		i++;
+		sign = -1;
+	}
+	while (ft_isdigit(str[i]))
+	{
+		result = result * 10 + (str[i] - '0');
 		i++;
 	}
-	return (NULL);
+	return (result * sign);
 }

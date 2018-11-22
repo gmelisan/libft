@@ -6,7 +6,7 @@
 #    By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 12:48:23 by gmelisan          #+#    #+#              #
-#    Updated: 2018/11/20 19:24:58 by gmelisan         ###   ########.fr        #
+#    Updated: 2018/11/22 14:19:20 by gmelisan         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -34,3 +34,11 @@ test:
 	@rm -f test_exe
 	@gcc test.c -L. -lft -o test_exe
 	./test_exe
+
+test_dbg: test_clean
+	@gcc -g test.c -L. -lft -o test_exe
+	lldb test_exe
+
+test_clean:
+	@rm -f test_exe
+	@rm -rf test_exe.dSYM/

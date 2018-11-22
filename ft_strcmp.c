@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmelisan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/21 17:35:55 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/22 16:14:46 by gmelisan         ###   ########.fr       */
+/*   Created: 2018/11/22 15:26:17 by gmelisan          #+#    #+#             */
+/*   Updated: 2018/11/22 16:17:50 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_memcmp(const void *s1, const void *s2, size_t n)
+int		ft_strcmp(const char *s1, const char *s2)
 {
 	size_t	i;
 	t_uchar	ucs1;
 	t_uchar	ucs2;
 
 	i = 0;
-	while (i < n)
+	while (s1[i])
 	{
 		ucs1 = *((t_uchar *)s1 + i);
 		ucs2 = *((t_uchar *)s2 + i);
@@ -27,5 +27,9 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n)
 			return (ucs1 - ucs2);
 		i++;
 	}
+	ucs1 = *((t_uchar *)s1 + i);
+	ucs2 = *((t_uchar *)s2 + i);
+	if (ucs1 != ucs2)
+		return (ucs1 - ucs2);
 	return (0);
 }

@@ -1,34 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 17:59:20 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/22 17:33:50 by gmelisan         ###   ########.fr       */
+/*   Created: 2018/11/22 13:45:14 by gmelisan          #+#    #+#             */
+/*   Updated: 2018/11/22 15:16:19 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t	i;
-	t_uchar	u_c;
+	size_t i;
+	size_t j;
 
-	u_c = (t_uchar)c;
+	if (*needle == '\0')
+		return ((char *)haystack);
 	i = 0;
-	while (i < n)
+	while (haystack[i] != '\0' && i != len)
 	{
-		if (*((t_uchar *)src + i) == u_c)
+		j = 0;
+		while (haystack[i + j] == needle[j] && i + j != len)
 		{
-			*((t_uchar *)dst + i) = *((t_uchar *)src + i);
-			i++;
-			return ((t_uchar *)dst + i);
+			j++;
+			if (needle[j] == '\0')
+				return ((char *)&haystack[i]);
 		}
-		*((t_uchar *)dst + i) = *((t_uchar *)src + i);
 		i++;
 	}
 	return (NULL);
 }
+
+/*
+
+str = "abcdefghijklmnop"
+
+strnstr(str, "abc" , 5);
+
+
+
+*/

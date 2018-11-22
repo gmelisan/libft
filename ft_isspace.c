@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmelisan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/21 19:56:00 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/22 11:23:23 by gmelisan         ###   ########.fr       */
+/*   Created: 2018/11/22 17:39:01 by gmelisan          #+#    #+#             */
+/*   Updated: 2018/11/22 17:39:06 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+int		ft_isspace(int c)
 {
-	char	*copy;
-	size_t	len;
+	t_uchar uc;
 
-	len = ft_strlen(s1);
-	copy = (char *)malloc(len + 1);
-	if (!copy)
-		return (NULL);
-	ft_memcpy(copy, s1, len);
-	copy[len] = '\0';
-	return (copy);
+	uc = (t_uchar)c;
+	if (uc == ' ' || uc == '\t')
+		return (1);
+	if (uc == '\n' || uc == '\r')
+		return (1);
+	if (uc == '\v' || uc == '\f')
+		return (1);
+	return (0);
 }
