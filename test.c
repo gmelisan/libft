@@ -6,12 +6,13 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 13:58:49 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/22 16:50:32 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/11/23 19:14:13 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 #include "libft.h"
 
@@ -679,43 +680,164 @@ void	test_strncat(void)
 
 void	test_strlcat(void)
 {
-	int n;
-	char buf1[10];
-	char buf2[10];
-	bzero(buf1, 10);
-	bzero(buf2, 10);
-
+	int n1;
+	int n2;
+	char src[] = ", world!!!!"; /* 11 chars */
 	printf("=== Testing ft_strlcat ===\n");
 
-	char str1[] = "Hello,";
-	char str2[] = "World.";
+	char str1[20] = "Hello"; 	/* 5 chars */
+	char str2[20] = "Hello";
 
-	/* n = ft_strlcat(buf1, str1, 10); */
-	/* printf("'%s'\t%d\n", buf1, n); */
-	/* n = ft_strlcat(buf1, str2, 0); */
-	/* printf("'%s'\t%d\n", buf1, n); */
+	n1 = strlcat(str1, src, 0);
+	n2 = ft_strlcat(str2, src, 0);
 
-	
-	printf("\tERROR\t\t!!!\n");
-	
-	/* n = ft_strlcat(buf2, str1, 10); */
-	/* printf("'%s'\t%d\n", buf2, n); */
-	/* n = ft_strlcat(buf2, str2, 3); */
-	/* printf("'%s'\t%d\n", buf2, n); */
+	printf("\tTest1 ");
+	if (strcmp(str1, str2) == 0 && n1 == n2)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tstr1 = '%s'\n\tstr2 = '%s'\n", str1, str2);
+		printf("\tn1 = %d, n2 = %d\n", n1, n2);
+	}
+	char str1_2[20] = "Hello"; 	/* 5 chars */
+	char str2_2[20] = "Hello";
 
-	/*
-	  9 - 12
-	  8 - 12
-	  7 - 12
-	  6 - 12
-	  5 - 11
-	  4 - 10
-	  3 - 9
-	  2 - 8
-	  1 - 7
-	  0 - 6
-	 */
-	
+	n1 = strlcat(str1_2, src, 1);
+	n2 = ft_strlcat(str2_2, src, 1);
+
+	printf("\tTest2 ");
+	if (strcmp(str1_2, str2_2) == 0 && n1 == n2)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tstr1 = '%s'\n\tstr2 = '%s'\n", str1_2, str2_2);
+		printf("\tn1 = %d, n2 = %d\n", n1, n2);
+	}
+	char str1_3[20] = "Hello";
+	char str2_3[20] = "Hello";
+
+	n1 = strlcat(str1_3, src, 2);
+	n2 = ft_strlcat(str2_3, src, 2);
+
+	printf("\tTest3 ");
+	if (strcmp(str1_3, str2_3) == 0 && n1 == n2)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tstr1 = '%s'\n\tstr2 = '%s'\n", str1_3, str2_3);
+		printf("\tn1 = %d, n2 = %d\n", n1, n2);
+	}
+	char str1_4[20] = "Hello";
+	char str2_4[20] = "Hello";
+
+	n1 = strlcat(str1_4, src, 5);
+	n2 = ft_strlcat(str2_4, src, 5);
+
+	printf("\tTest4 ");
+	if (strcmp(str1_4, str2_4) == 0 && n1 == n2)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tstr1 = '%s'\n\tstr2 = '%s'\n", str1_4, str2_4);
+		printf("\tn1 = %d, n2 = %d\n", n1, n2);
+	}
+	char str1_5[20] = "Hello";
+	char str2_5[20] = "Hello";
+
+	n1 = strlcat(str1_5, src, 6);
+	n2 = ft_strlcat(str2_5, src, 6);
+
+	printf("\tTest5 ");
+	if (strcmp(str1_5, str2_5) == 0 && n1 == n2)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tstr1 = '%s'\n\tstr2 = '%s'\n", str1_5, str2_5);
+		printf("\tn1 = %d, n2 = %d\n", n1, n2);
+	}
+	char str1_6[20] = "Hello";
+	char str2_6[20] = "Hello";
+
+	n1 = strlcat(str1_6, src, 7);
+	n2 = ft_strlcat(str2_6, src, 7);
+
+	printf("\tTest6 ");
+	if (strcmp(str1_6, str2_6) == 0 && n1 == n2)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tstr1 = '%s'\n\tstr2 = '%s'\n", str1_6, str2_6);
+		printf("\tn1 = %d, n2 = %d\n", n1, n2);
+	}
+	char str1_7[20] = "Hello";
+	char str2_7[20] = "Hello";
+
+	n1 = strlcat(str1_7, src, 10);
+	n2 = ft_strlcat(str2_7, src, 10);
+
+	printf("\tTest7 ");
+	if (strcmp(str1_7, str2_7) == 0 && n1 == n2)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tstr1 = '%s'\n\tstr2 = '%s'\n", str1_7, str2_7);
+		printf("\tn1 = %d, n2 = %d\n", n1, n2);
+	}
+	char str1_8[20] = "Hello";
+	char str2_8[20] = "Hello";
+
+	n1 = strlcat(str1_8, src, 10);
+	n2 = ft_strlcat(str2_8, src, 10);
+
+	printf("\tTest8 ");
+	if (strcmp(str1_8, str2_8) == 0 && n1 == n2)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tstr1 = '%s'\n\tstr2 = '%s'\n", str1_8, str2_8);
+		printf("\tn1 = %d, n2 = %d\n", n1, n2);
+	}
+	char str1_9[20] = "Hello";
+	char str2_9[20] = "Hello";
+
+	n1 = strlcat(str1_9, src, 20);
+	n2 = ft_strlcat(str2_9, src, 20);
+
+	printf("\tTest9 ");
+	if (strcmp(str1_9, str2_9) == 0 && n1 == n2)
+	{
+		printf("ok\n");
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tstr1 = '%s'\n\tstr2 = '%s'\n", str1_9, str2_9);
+		printf("\tn1 = %d, n2 = %d\n", n1, n2);
+	}
 }
 
 void	test_strchr(void)
@@ -1115,7 +1237,281 @@ void	test_strncmp(void)
 		printf("Should be equal to 0:\tn1=%d, n2=%d\n", n1, n2);
 	}
 }
+void	test_atoi(void)
+{
+	int a;
+	int b;
+	printf("=== Testing ft_atoi ===\n");
+	char strings[9][20] =
+	{
+		{""},
+		{"djcsa"},
+		{"d23jcsa"},
+		{"  23djcsa"},
+		{"+1452djcsa"},
+		{"-99999"},
+		{"\t999.099"},
+		{"\v-222222222222222222222222222222222551!"},
+		{" \t  \n\r\v\f   +2 2 "}
+	};
+	int i = 0;
+	while (i < 9)
+	{
+		printf("\tTest%d ", i + 1);
+		a = atoi(strings[i]);
+		b = ft_atoi(strings[i]);
+		if (a == b)
+		{
+			printf ("ok\n");
+		}
+		else
+		{
+			printf("\tERROR\t\t!!!\n");
+			printf("\t%d != %d\n", a, b);
+		}
+		i++;
+	}
+}
+void	test_isalpha(void)
+{
+	int n1;
+	int n2;
+	printf("=== Testing ft_isalpha ===\n");
 
+	n1 = isalpha('a');
+	n2 = ft_isalpha('a');
+	printf("\tTest1 ");
+	if (n1 && n2)
+	{
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tn1=%d, n2=%d\n", n1, n2);
+	}
+	n1 = isalpha(-150);
+	n2 = ft_isalpha(-150);
+	printf("\tTest2 ");
+	if (!n1 && !n2)
+	{
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tn1=%d, n2=%d\n", n1, n2);
+	}
+	n1 = isalpha(9999);
+	n2 = ft_isalpha(9999);
+	printf("\tTest3 ");
+	if (!n1 && !n2)
+	{
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tn1=%d, n2=%d\n", n1, n2);
+	}
+	n1 = isalpha(113);
+	n2 = ft_isalpha(113);
+	printf("\tTest4 ");
+	if (n1 && n2)
+	{
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tn1=%d, n2=%d\n", n1, n2);
+	}
+}
+void	test_isdigit(void)
+{
+	printf("=== Testing ft_isdigit ===\n");
+	int n1;
+	int n2;
+
+	n1 = isdigit('0');
+	n2 = ft_isdigit('0');
+	printf("\tTest1 ");
+	if (n1 && n2)
+	{
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tn1=%d, n2=%d\n", n1, n2);
+	}
+	n1 = isdigit(-100);
+	n2 = ft_isdigit(-100);
+	printf("\tTest2 ");
+	if (!n1 && !n2)
+	{
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tn1=%d, n2=%d\n", n1, n2);
+	}
+	n1 = isdigit(9999);
+	n2 = ft_isdigit(9999);
+	printf("\tTest3 ");
+	if (!n1 && !n2)
+	{
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tn1=%d, n2=%d\n", n1, n2);
+	}
+	n1 = isdigit(53);
+	n2 = ft_isdigit(53);
+	printf("\tTest4 ");
+	if (n1 && n2)
+	{
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tn1=%d, n2=%d\n", n1, n2);
+	}
+}
+void	test_isalnum(void)
+{
+	int n1;
+	int n2;
+	
+	printf("=== Testing ft_isalnum ===\n");
+	n1 = isalnum('a');
+	n2 = ft_isalnum('a');
+	printf("\tTest1 ");
+	if (n1 && n2)
+	{
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tn1=%d, n2=%d\n", n1, n2);
+	}
+	n1 = isalnum('1');
+	n2 = ft_isalnum('1');
+	printf("\tTest2 ");
+	if (n1 && n2)
+	{
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tn1=%d, n2=%d\n", n1, n2);
+	}
+	n1 = isalnum(-1);
+	n2 = ft_isalnum(-1);
+	printf("\tTest3 ");
+	if (!n1 && !n2)
+	{
+		printf("ok (n1=%d, n2=%d)\n", n1, n2);
+	}
+	else
+	{
+		printf("ERROR\t\t!!!\n");
+		printf("\tn1=%d, n2=%d\n", n1, n2);
+	}
+}
+
+int		istrue(int a)
+{
+	return (a ? 1 : 0);
+}
+
+void	test_isascii(void)
+{
+	printf("=== Testing ft_ascii ===\n");
+
+	int i = -100;
+	int error_flag = 0;
+	printf("\tTest from -100 to 500...\n");
+	while (i < 501)
+	{
+		if (istrue(isascii(i)) != istrue(ft_isascii(i)))
+		{
+			printf("\tERROR\t\t!!!\n");
+			printf("\tisascii(%d) = %d\n", i, isascii(i));
+			printf("\tft_isascii(%d) = %d\n", i, ft_isascii(i));
+			error_flag = 1;
+		}
+		i++;
+	}
+	if (!error_flag)
+		printf("\tok\n");
+}
+void	test_isprint(void)
+{
+	printf("=== Testing ft_isprint ===\n");
+	int i = -100;
+	int error_flag = 0;
+	printf("\tTest from -100 to 500...\n");
+	while (i < 501)
+	{
+		if (istrue(isprint(i)) != istrue(ft_isprint(i)))
+		{
+			printf("\tERROR\t\t!!!\n");
+			printf("\tisprint(%d) = %d\n", i, isprint(i));
+			printf("\tft_isprint(%d) = %d\n", i, ft_isprint(i));
+			error_flag = 1;
+		}
+		i++;
+	}
+	if (!error_flag)
+		printf("\tok\n");
+}
+void	test_toupper(void)
+{
+	printf("=== Testing ft_toupper ===\n");
+	int i = -100;
+	int error_flag = 0;
+	printf("\tTest from -100 to 500...\n");
+	while (i < 501)
+	{
+		if (toupper(i) != ft_toupper(i))
+		{
+			printf("\tERROR\t\t!!!\n");
+			printf("\ttoupper(%d) = %d\n", i, toupper(i));
+			printf("\tft_toupper(%d) = %d\n", i, ft_toupper(i));
+			error_flag = 1;
+		}
+		i++;
+	}
+	if (!error_flag)
+		printf("\tok\n");
+}
+void	test_tolower(void)
+{
+	printf("=== Testing ft_tolower ===\n");
+	int i = -100;
+	int error_flag = 0;
+	printf("\tTest from -100 to 500...\n");
+	while (i < 501)
+	{
+		if (tolower(i) != ft_tolower(i))
+		{
+			printf("\tERROR\t\t!!!\n");
+			printf("\ttolower(%d) = %d\n", i, tolower(i));
+			printf("\tft_tolower(%d) = %d\n", i, ft_tolower(i));
+			error_flag = 1;
+		}
+		i++;
+	}
+	if (!error_flag)
+		printf("\tok\n");
+}
 
 int		main(void)
 {
@@ -1139,4 +1535,14 @@ int		main(void)
 	test_strnstr();
 	test_strcmp();
 	test_strncmp();
+	test_atoi();
+	test_isalpha();
+	test_isdigit();
+	test_isalnum();
+	test_isascii();
+	test_isprint();
+	test_toupper();
+	test_tolower();
+
+	
 }

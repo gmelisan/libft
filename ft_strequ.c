@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 17:31:55 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/23 18:18:00 by gmelisan         ###   ########.fr       */
+/*   Created: 2018/11/23 19:46:20 by gmelisan          #+#    #+#             */
+/*   Updated: 2018/11/23 19:49:02 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_tolower(int c)
+#include "libft.h"
+
+int		ft_strequ(char const *s1, char const *s2)
 {
-	if (c >= 'A' && c <= 'Z')
-		return (c - ('A' - 'a'));
-	return (c);
+	size_t	i;
+
+	i = 0;
+	while (s1[i])
+	{
+		if (s1[i] != s2[i])
+			return (0);
+		i++;
+	}
+	if (s1[i] != s2[i])
+			return (0);
+	return (1);
 }

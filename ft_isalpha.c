@@ -6,19 +6,15 @@
 /*   By: gmelisan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 16:59:09 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/22 17:42:48 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/11/23 17:57:28 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int		isalpha(int c)
+int		ft_isalpha(int c)
 {
-	t_uchar uc;
-
-	uc = (t_uchar)c;
-	if (uc >= 'a' && uc <= 'z')
-		if (uc >= 'A' && uc <= 'Z')
-			return (1);
+	if (c >= 'a' && c <= 'z')
+		return (1);
+	if (c >= 'A' && c <= 'Z')
+		return (1);
 	return (0);
 }

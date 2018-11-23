@@ -6,18 +6,13 @@
 /*   By: gmelisan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 17:13:48 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/22 17:17:05 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/11/23 18:16:13 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 int		ft_isprint(int c)
 {
-	t_uchar uc;
-
-	uc = (t_uchar)c;
-	if (uc >= 32 && uc <= 126)
+	if (c >= 32 && c <= 126)
 		return (1);
 	return (0);
 }

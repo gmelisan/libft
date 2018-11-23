@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 17:31:55 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/23 18:18:00 by gmelisan         ###   ########.fr       */
+/*   Created: 2018/11/23 19:49:47 by gmelisan          #+#    #+#             */
+/*   Updated: 2018/11/23 19:52:27 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_tolower(int c)
+int		ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	if (c >= 'A' && c <= 'Z')
-		return (c - ('A' - 'a'));
-	return (c);
+	size_t	i;
+
+	if (n > ft_strlen(s1))
+		return (ft_strequ(s1, s2));
+	else
+	{
+		i = 0;
+		while (i < n)
+		{
+			if (s1[i] != s2[i])
+				return (0);
+			i++;
+		}
+		return (1);
+	}
 }

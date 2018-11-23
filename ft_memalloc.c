@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 17:31:55 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/23 18:18:00 by gmelisan         ###   ########.fr       */
+/*   Created: 2018/11/23 18:31:24 by gmelisan          #+#    #+#             */
+/*   Updated: 2018/11/23 19:24:37 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_tolower(int c)
+#include <stdlib.h>
+#include "libft.h"
+
+void	*ft_memalloc(size_t size)
 {
-	if (c >= 'A' && c <= 'Z')
-		return (c - ('A' - 'a'));
-	return (c);
+	t_uchar *res;
+
+	if (size == 0)
+		return (NULL);
+	res = (t_uchar *)malloc(size);
+	if (!res)
+		return (NULL);
+	ft_bzero(res, size);
+	return (res);
 }

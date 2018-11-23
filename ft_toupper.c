@@ -6,18 +6,13 @@
 /*   By: gmelisan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 17:26:14 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/22 17:30:48 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/11/23 18:18:17 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 int		ft_toupper(int c)
 {
-	t_uchar uc;
-
-	uc = (t_uchar)c;
-	if (uc >= 'a' && uc <= 'z')
-		return (uc + 'A' - 'a');
+	if (c >= 'a' && c <= 'z')
+		return (c + 'A' - 'a');
 	return (c);
 }
