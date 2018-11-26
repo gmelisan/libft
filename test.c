@@ -6,13 +6,16 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 13:58:49 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/26 03:36:38 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/11/26 19:47:37 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <limits.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 #include "libft.h"
 
@@ -1512,22 +1515,314 @@ void	test_tolower(void)
 		printf("\tok\n");
 }
 
+void	test_memalloc(void)
+{
+	printf("=== Testing ft_memalloc ===\n");
+
+	printf("\tft_memalloc(sizeof(int) * 3):\n");
+	int *a = (int *)ft_memalloc(sizeof(int) * 3);
+	int i = 0;
+	while (i < 3)
+	{
+		printf("\t%p:\t%d\n", &a[i], a[i]);
+		i++;
+	}
+	free(a);
+}
+
+void	test_memdel(void)
+{
+	printf("=== Testing ft_memdel ===\n");
+	int *a = (int *)malloc(sizeof(int) * 3);
+	printf("\tBefore memdel:\n");
+	printf("\ta = %p\n", a);
+	ft_memdel((void **)&a);
+	printf("\tAfter memdel:\n");
+	printf("\ta = %p\n", a);
+}
+
+
+void	test_strnew(void)
+{
+	printf("=== Testing ft_strnew ===\n");
+	char *str = ft_strnew(5);
+	printf("\tft_strnew(5):\n");
+	int i = 0;
+	while (i < 5)
+	{
+		printf("\t%p:\t%d\n", &str[i], str[i]);
+		i++;
+	}
+}
+
+
+void	test_strdel(void)
+{
+	printf("=== Testing ft_strdel ===\n");
+	char *str = (char *)malloc(sizeof(char) * 6);
+	int i = 0;
+	while (i < 5)
+		str[i++] = i + '0';
+	str[5] = '\0';
+	printf("\tBefore strdel:\n");
+	printf("\tstr='%s'\n", str);
+	ft_strdel(&str);
+	printf("\tAfter strdel:\n");
+	printf("\tstr=%s\n", str);
+}
+
+
+void	test_strclr(void)
+{
+	printf("=== Testing ft_strclr ===\n");
+	char *str = (char *)malloc(sizeof(char) * 6);
+	int i = 0;
+	while (i < 5)
+		str[i++] = i + '0';
+	str[5] = '\0';
+	printf("\tBefore strclr:\n");
+	i = 0;
+	while (i < 6)
+		printf("\t%p:\t%d\n", &str[i], str[i++]);
+	ft_strclr(str);
+	printf("\tAfter strclr:\n");
+	i = 0;
+	while (i < 6)
+		printf("\t%p:\t%d\n", &str[i], str[i++]);
+}
+
+void	f(char *c)
+{
+	*c += 1;
+}
+
+void	test_striter(void)
+{
+	printf("=== Testing ft_striter ===\n");
+
+	char str[] = "abc123";
+
+	printf("str = '%s'\n", str);
+	printf("Function 'f' shifts char forward by 1.\n");
+	printf("striter(str, f)\n");
+	ft_striter(str, f);
+	printf("str = '%s'\n", str);
+	ft_putchar('\n');
+	
+}
+
+void	fi(unsigned int i, char *c)
+{
+	if (i % 2 == 0)
+		*c += 1;
+}
+
+void	test_striteri(void)
+{
+	printf("=== Testing ft_striteri ===\n");
+
+	char str[] = "abc123";
+
+	printf("str = '%s'\n", str);
+	printf("Function 'fi' shifts char forward by 1 if index is even.\n");
+	printf("striter(str, fi)\n");
+	ft_striteri(str, fi);
+	printf("str = '%s'\n", str);
+	ft_putchar('\n');
+	
+}
+
+char	f4map(char c)
+{
+	return (c + 2); 
+}
+
+void	test_strmap(void)
+{
+	printf("=== Testing ft_strmap ===\n");
+
+	char str[] = "abc123";
+
+	printf("str = '%s'\n", str);
+	printf("f4map returns given charater incremented by 2\n");
+	printf("new = striter(str, f4map)\n");
+	char *new = ft_strmap(str, f4map);
+	printf("new = '%s'\n", new);
+	ft_putchar('\n');
+}
+
+char	fi4map(unsigned int i, char c)
+{
+	if (i % 2 != 0)
+		return (c + 2);
+	return (c);
+}
+
+void	test_strmapi(void)
+{
+	printf("=== Testing ft_strmapi ===\n");
+
+	char str[] = "abc123";
+
+	printf("str = '%s'\n", str);
+	printf("fi4map returns given charater incremented by 2 if index is odd\n");
+	printf("new = striter(str, fi4map)\n");
+	char *new = ft_strmapi(str, fi4map);
+	printf("new = '%s'\n", new);
+	ft_putchar('\n');
+}
+
+
+void	test_strequ(void)
+{
+	printf("=== Testing ft_strequ ===\n");
+	char str1[] = "abc";
+	char str2[] = "abc";
+
+	printf("\tTest1 ");
+	if (ft_strequ(str1, str2) == 1)
+		printf("\tok\n");
+	else
+		printf("\tERROR\t\t!!!\n");
+
+	char str1_2[] = "abc";
+	char str2_2[] = "abcd";
+
+	printf("\tTest2 ");
+	if (ft_strequ(str1_2, str2_2) == 0)
+		printf("\tok\n");
+	else
+		printf("\tERROR\t\t!!!\n");
+
+	char str1_3[] = "abcd";
+	char str2_3[] = "abc";
+
+	printf("\tTest3 ");
+	if (ft_strequ(str1_3, str2_3) == 0)
+		printf("\tok\n");
+	else
+		printf("\tERROR\t\t!!!\n");
+
+	char str1_4[] = "";
+	char str2_4[] = "";
+
+	printf("\tTest4 ");
+	if (ft_strequ(str1_4, str2_4) == 1)
+		printf("\tok\n");
+	else
+		printf("\tERROR\t\t!!!\n");
+}
+
+
+void	test_strnequ(void)
+{
+	printf("=== Testing ft_strnequ ===\n");
+	char str1[] = "abcdef";
+	char str2[] = "abcddddddddddd";
+
+	printf("\tTest1 ");
+	if (ft_strnequ(str1, str2, 3) == 1)
+		printf("\tok\n");
+	else
+		printf("\tERROR\t\t!!!\n");
+
+	char str1_2[] = "abcd\0a2523gkdj";
+	char str2_2[] = "abcd\0feslgjwog";
+
+	printf("\tTest2 ");
+	if (ft_strnequ(str1_2, str2_2, 10) == 1)
+		printf("\tok\n");
+	else
+		printf("\tERROR\t\t!!!\n");
+
+	char str1_3[] = "abcd";
+	char str2_3[] = "abc";
+
+	printf("\tTest3 ");
+	if (ft_strnequ(str1_3, str2_3, 4) == 0)
+		printf("\tok\n");
+	else
+		printf("\tERROR\t\t!!!\n");
+
+	char str1_4[] = "abc";
+	char str2_4[] = "abc";
+
+	printf("\tTest4 ");
+	if (ft_strnequ(str1_4, str2_4, 0) == 1)
+		printf("\tok\n");
+	else
+		printf("\tERROR\t\t!!!\n");
+}
+
+
+void	test_strsub(void)
+{
+	printf("=== Testing ft_strsub ===\n");
+	char str[] = "Hello, world!";
+	printf("str = '%s'\n", str);
+	printf("new = ft_strsub(str, 2, 6)\n");
+	char *new = ft_strsub(str, 2, 6);
+	printf("new = '%s'\n", new);
+	free(new);
+	printf("\n");
+}
+
+
+void	test_strjoin(void)
+{
+	printf("=== Testing ft_strjoin ===\n");
+	char s1[] = "hello";
+	char s2[] = ", ";
+	char s3[] = "world";
+	printf("s1 = '%s', s2 = '%s', s3 = '%s'\n", s1, s2, s3);
+	printf("a = ft_strjoin(s1, s2)\n");
+	char *a = ft_strjoin(s1, s2);
+	printf("a = '%s'\n", a);
+	printf("b = ft_strjoin(a, s3)\n");
+	char *b = ft_strjoin(a, s3);
+	printf("b = '%s'\n", b);
+	printf("\n");
+	free(a);
+	free(b);
+}
+
+
+void	test_strtrim(void)
+{
+	printf("=== Testing ft_strtrim ===\n");
+	char str[] = " \t   string  \n  ";
+	printf("str = '%s'\n", str);
+	printf("new = ft_strtrim(str)\n");
+	char *new = ft_strtrim(str);
+	printf("new = '%s'\n", new);
+	printf("\n");
+}
+
 void	test_strsplit(void)
 {
 	char **a;
 	int i;
 	
 	printf("=== Testing ft_strsplit ===\n");
-	char *str = "1..1..";
-	printf("\nstr: \"%s\"\n\n", str);
-	/* int i = 0; */
-	/* while (i < ft_strlen(str)) */
-	/* { */
-	/* 	printf("%p\t%c\n", &str[i], str[i]); */
-	/* 	i++; */
-	/* } */
+	char *str = "..af.1..b dd..";
+	printf("str: '%s'\n", str);
 
-	a = ft_strsplit(str, '1');
+	printf("ft_strsplit(str, '.')\n");
+	a = ft_strsplit(str, '.');
+	
+	printf("\nnew array:\n\n");
+	i = 0;
+	while (a[i] != 0)
+	{
+		printf("%p\t%s\n", a[i], a[i]);
+		i++;
+	}
+	char *str2 = "agjl bd jl  lasj";
+	printf("\n\n\nstr2: '%s'\n", str2);
+
+	printf("ft_strsplit(str2, ' ')\n");
+	free(a);
+	a = ft_strsplit(str2, ' ');
 	
 	printf("\nnew array:\n\n");
 	i = 0;
@@ -1538,6 +1833,7 @@ void	test_strsplit(void)
 	}
 }
 
+
 void	test_itoa(void)
 {
 	printf("=== Testing ft_itoa ===\n");
@@ -1545,26 +1841,96 @@ void	test_itoa(void)
 	int n = -2;
 	while (n < 3)
 		printf("%s\n", ft_itoa(n++));
-	
+	printf("test INT_MIN (should be -2147483648): %s\n", ft_itoa(INT_MIN));
+	printf("test INT_MAX (should be 2147483647): %s\n", ft_itoa(INT_MAX));
+	printf("\n");
 }
+
+void	test_putchar(void)
+{
+	printf("=== Testing ft_putchar ===\n");
+	printf("ft_putchar('c'):\n");
+	ft_putchar('c');
+	printf("\n\n");
+}
+
+
+void	test_putstr(void)
+{
+	printf("=== Testing ft_putstr ===\n");
+	printf("ft_putstr(\"string\\n\\n\\n\"):\n");
+	ft_putstr("string\n\n\n");
+}
+
+
+void	test_putendl(void)
+{
+	printf("=== Testing ft_putendl ===\n");
+	printf("ft_putendl(\"string\"):\n");
+	ft_putendl("string");
+}
+
 
 void	test_putnbr(void)
 {
-	printf("=== Testing ft_putnbr ===\n");
-
-	ft_putnbr(-2147483648);
+	printf("=== Testing ft_putnbr === (pls check for malloc)\n");
+	printf("ft_putnbr(40):\n");
+	ft_putnbr(40);
 	ft_putchar('\n');
+	printf("ft_putnbr(INT_MIN):\n");
+	ft_putnbr(INT_MIN);
+	ft_putchar('\n');
+	printf("ft_putnbr(INT_MAX):\n");
+	ft_putnbr(INT_MAX);
+	ft_putchar('\n');
+	printf("ft_putnbr(0):\n");
+	ft_putnbr(0);
+	ft_putstr("\n");
 }
 
+void	test_fd(void)
+{
+	int fd = open("test_fd.txt", O_RDWR | O_CREAT | O_TRUNC,
+				  S_IRUSR | S_IRGRP | S_IROTH | S_IWUSR | S_IWGRP | S_IWOTH);
 
+	printf("=== Testing fd functions ===\n");
+	printf("filename = \"test_fd.txt\", fd = %d\n", fd);
+	printf("...\n");
+	ft_putstr_fd("=== self-testing ft_putstr_fd ===\n", fd);
+	ft_putstr_fd("=== Testing ft_putchar_fd ===\n", fd);
+	ft_putchar_fd('c', fd);
+	ft_putchar_fd('\n', fd);
+	ft_putstr_fd("=== Testing ft_putendl_fd ===\n", fd);
+	ft_putendl_fd("string", fd);
+	ft_putstr_fd("=== Testing ft_putnbr_fd ===\n", fd);
+	ft_putstr_fd("ft_putnbr_fd(40):\n", fd);
+	ft_putnbr_fd(40, fd);
+	ft_putchar_fd('\n', fd);
+	ft_putstr_fd("ft_putnbr_fd(INT_MIN, fd):\n", fd);
+	ft_putnbr_fd(INT_MIN, fd);
+	ft_putchar_fd('\n', fd);
+	ft_putstr_fd("ft_putnbr_fd(INT_MAX, fd):\n", fd);
+	ft_putnbr_fd(INT_MAX, fd);
+	ft_putchar_fd('\n', fd);
+	ft_putstr_fd("ft_putnbr_fd(0, fd):\n", fd);
+	ft_putnbr_fd(0, fd);
+	ft_putchar_fd('\n', fd);
+
+	close(fd);
+	printf("fd tests done.\n");
+	
+	printf("Please invoke 'cat test_fd.txt' to check fd tests\n\n");
+}
 
 int		main(void)
 {
+	printf("====== PART 1 ======\n");
+	
 	test_memset();
 	test_bzero();
 	test_memcpy();
 	test_memccpy();
-	/* test_memmove(); */
+	test_memmove();
 	test_memchr();
 	test_memcmp();
 	test_strlen();
@@ -1588,10 +1954,32 @@ int		main(void)
 	test_isprint();
 	/* test_toupper(); */
 	/* test_tolower();	 */
-
-	test_memmove();
-
+	
+	printf("====== PART 2 ======\n");
+	
+	test_memalloc();
+	test_memdel();
+	test_strnew();
+	test_strdel();
+	test_strclr();
+	test_striter();
+	test_striteri();
+	test_strmap();
+	test_strmapi();
+	test_strequ();
+	test_strnequ();
+	test_strsub();
+	test_strjoin();
+	test_strtrim();
 	test_strsplit();
 	test_itoa();
+	test_putchar();
+	test_putstr();
+	test_putendl();
 	test_putnbr();
+	test_fd();
+
+	printf("====== PART 3 ======\n");
+
+	printf ("done.\n");
 }

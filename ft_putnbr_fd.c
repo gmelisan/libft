@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 03:27:15 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/26 03:28:28 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/11/26 19:41:29 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,21 @@ void			ft_putnbr_fd(int n, int fd)
 {
 	t_uint	un;
 	t_uint	p;
+	int		digits;
 
 	if (n < 0)
 		ft_putchar_fd('-', fd);
 	un = get_abs(n);
-	p = power10(count_digits(un) - 1);
+	digits = count_digits(un);
+	p = power10(digits - 1);
 	if (un == 0)
-		ft_putchar('0');
-	while (un)
-	{
-		ft_putchar_fd(un / p + '0', fd);
-		un = un % p;
-		p = p / 10;
-	}
+		ft_putchar_fd('0', fd);
+	else
+		while (digits != 0)
+		{
+			ft_putchar_fd(un / p + '0', fd);
+			un = un % p;
+			p = p / 10;
+			digits--;
+		}
 }
