@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 13:20:56 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/23 19:54:30 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/11/26 03:36:18 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <string.h>
 
 typedef unsigned char	t_uchar;
+typedef unsigned int	t_uint;
 
 /*
 ** Part 1
@@ -49,7 +50,6 @@ int		ft_isascii(int c);
 int		ft_isprint(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
-int		ft_isspace(int c);
 
 /*
 ** Part 2
@@ -87,26 +87,103 @@ char	*ft_strnew(size_t size);
 */
 
 void	ft_strdel(char **as);
-void	ft_strclr(char *s);
-void	ft_striter(char *s, void (*f)(char *));
-void	ft_striteri(char *s, void (*f)(unsigned int, char *));
-char	*ft_strmap(char const *s, char (*f)(char));
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-int		ft_strequ(char const *s1, char const *s2);
-int		ft_strnequ(char const *s1, char const *s2, size_t n);
-char	*ft_strsub(char const *s, unsigned int start, size_t len);
-/* ft_strjoin(); */
-/* ft_strtrim(); */
-/* ft_strsplit(); */
-/* ft_itoa(); */
-/* ft_putchar(); */
-/* ft_putstr(); */
-/* ft_putendl(); */
-/* ft_putnbr(); */
-/* ft_putchar_fd(); */
-/* ft_putstr_fd(); */
-/* ft_putendl_fd(); */
-/* ft_putnbr_fd(); */
 
+/*
+** Takes as a parameter the address of a string that need to be freed 
+** with free(3), then sets its pointer to NULL.
+** 
+** as: The string's address that needs to be freed and its pointer set to NULL.
+*/
+
+void	ft_strclr(char *s);
+
+/* 
+** Sets every character of the string to the value '\0'.
+**
+** s: The string that needs to be cleared.
+*/
+
+void	ft_striter(char *s, void (*f)(char *));
+
+/* 
+** Applies the function f to each character of the string passed as argument.
+** Each character is passed by address to f to be modified if necessary.
+**
+** s: The string to iterate.
+** f: The function to apply to each character of s.
+*/
+
+void	ft_striteri(char *s, void (*f)(unsigned int, char *));
+
+/* 
+** Applies the function f to each character of the string passed as argument,
+** and passing its index as first argument. Each character is passed by
+** address to f to be modified if necessary.
+**
+** s: The string to iterate.
+** f: The function to apply to each character of s and its index.
+*/
+
+char	*ft_strmap(char const *s, char (*f)(char));
+
+/*
+** Applies the function f to each character of the string given as argument
+** to create a "fresh" new string (with malloc(3)) resulting from successive
+** applications of f.
+**
+** s: The string to map.
+** f: The function to apply to each character of s.
+** return: The "fresh" string created from the successive applications of f.
+*/
+
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+
+/*
+** Applies the function f to each character of the string passed as argument
+** by giving its index as first argument to create a "fresh" new string
+** (with malloc(3)) resulting from the successive applications of f.
+**
+** s: The string to map.
+** f: The function to apply to each character of s and its index.
+** return: The "fresh" string created from the successive applications of f.
+*/
+
+int		ft_strequ(char const *s1, char const *s2);
+
+/*
+** Lexicographical comparison between s1 and s2. If the 2 strings are identical
+** the function returns 1, or 0 otherwise.
+**
+** s1: The first string to be compared.
+** s2: The second string to be compared.
+** return: 1 or 0 according to if the 2 strings are identical or not.
+*/
+
+int		ft_strnequ(char const *s1, char const *s2, size_t n);
+
+/*
+** Lexicographical comparison between s1 and s2 up to n characters or until
+** a '\0' is reached. If the 2 strings are identical, the function returns 1,
+** or 0 otherwise.
+**
+** s1: The first string to be compared.
+** s2: The second string to be compared.
+** n: The maximum number of characters to be compared.
+** return: 1 or 0 according to if the 2 strings are identical or not.
+*/
+
+char	*ft_strsub(char const *s, unsigned int start, size_t len);
+char 	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strtrim(char const *s);
+char	**ft_strsplit(char const *s, char c);
+char	*ft_itoa(int n);
+void	ft_putchar(char c);
+void	ft_putstr(char const *s);
+void	ft_putendl(char const *s);
+void	ft_putnbr(int n);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char const *s, int fd);
+void	ft_putendl_fd(char const *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
 
 #endif
