@@ -6,7 +6,7 @@
 #    By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 13:12:07 by gmelisan          #+#    #+#              #
-#    Updated: 2018/11/26 03:19:07 by gmelisan         ###   ########.fr        #
+#    Updated: 2018/11/26 22:13:23 by gmelisan         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -63,6 +63,12 @@ ft_putchar_fd.c \
 ft_putstr_fd.c \
 ft_putendl_fd.c \
 ft_putnbr_fd.c \
+ft_lstnew.c \
+ft_lstdelone.c \
+ft_lstdel.c \
+# ft_lstadd.c \
+# ft_lstiter.c \
+# ft_lstmap.c \
 
 OBJ = \
 ft_memset.o \
@@ -117,3 +123,9 @@ ft_putchar_fd.o \
 ft_putstr_fd.o \
 ft_putendl_fd.o \
 ft_putnbr_fd.o \
+ft_lstnew.o \
+ft_lstdelone.o \
+ft_lstdel.o \
+# ft_lstadd.o \
+# ft_lstiter.o \
+# ft_lstmap.o \
