@@ -6,7 +6,7 @@
 /*   By: gmelisan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 19:54:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/25 23:42:56 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/11/27 17:14:40 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	size_t	i;
 	char	*res;
 
-	res = ft_strnew(len + 1);
+	res = ft_strnew(len);
 	if (!res)
 		return (NULL);
 	i = 0;

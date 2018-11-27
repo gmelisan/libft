@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 13:20:56 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/26 22:13:31 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/11/27 17:37:43 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,8 +173,46 @@ int		ft_strnequ(char const *s1, char const *s2, size_t n);
 */
 
 char	*ft_strsub(char const *s, unsigned int start, size_t len);
+
+/*
+** Allocates (with malloc(3)) and returns a "fresh" substring from the
+** given as argument. The substring begins at index 'start' and 
+** is of size 'len'. If 'start' and 'len' aren't refering to a valid 
+** substring, the behavior is undefined. If the allocation fails,
+** the function returns NULL.
+**
+** s: The string from which create the substring.
+** start: The start index of the substring.
+** len: The size of the substring.
+** return: The substring.
+*/
+
 char 	*ft_strjoin(char const *s1, char const *s2);
+
+/* 
+** Allocates (with malloc(3)) and returns a "fresh" string ending with '\0',
+** result of the concatenation of s1 and s2. If the allocation fails
+** the function returns NULL.
+**
+** s1: The prefix string.
+** s2: The suffix string.
+** return: The "fresh" string result of the concatenation of the 2 strings.
+*/
+
 char	*ft_strtrim(char const *s);
+
+/* 
+** Allocates (with malloc(3)) and returns a copy of the string given as
+** argument without whitespaces at the beginning or at the end of the
+** string. Will be considereed as whitespaces the following characters
+** ' ', '\n' and '\t'. If s has no whitespaces at the beginning or
+** at the end, the function returns a copy of s. If the allocation fails
+** the function returns NULL.
+**
+** s: The string to be trimmed.
+** return: The "fresh" trimmed string or a copy of s.
+*/
+
 char	**ft_strsplit(char const *s, char c);
 char	*ft_itoa(int n);
 void	ft_putchar(char c);

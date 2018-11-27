@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 20:47:50 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/25 23:44:46 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/11/27 17:24:23 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ char	*ft_strtrim(char const *s)
 	res = ft_strsub(s, from, to - from + 1);
 	if (!res)
 		return (NULL);
-	return (res);	
+	return (res);
 }

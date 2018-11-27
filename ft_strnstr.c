@@ -6,7 +6,7 @@
 /*   By: gmelisan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 13:45:14 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/22 15:16:19 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/11/27 17:23:04 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,3 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	}
 	return (NULL);
 }
-
-/*
-
-str = "abcdefghijklmnop"
-
-strnstr(str, "abc" , 5);
-
-
-
-*/

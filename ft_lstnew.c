@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:43:51 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/26 22:41:18 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/11/27 17:25:51 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 	if (!new)
 		return (NULL);
 	new->next = NULL;
-	
 	if (!content)
 	{
 		new->content = NULL;

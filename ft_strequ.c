@@ -6,7 +6,7 @@
 /*   By: gmelisan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 19:46:20 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/23 19:49:02 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/11/27 17:22:09 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int		ft_strequ(char const *s1, char const *s2)
 		i++;
 	}
 	if (s1[i] != s2[i])
-			return (0);
+		return (0);
 	return (1);
 }

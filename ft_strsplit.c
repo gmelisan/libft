@@ -6,12 +6,16 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 23:15:49 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/26 00:25:54 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/11/27 17:27:16 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
+
+/*
+** Counts words to get size for main array
+*/
 
 static int	count_size(char const *s, char c)
 {
@@ -33,54 +37,75 @@ static int	count_size(char const *s, char c)
 	return (size);
 }
 
-/* static int	get_len(char const *s, char c, int start) */
-/* { */
-/* 	int len; */
-/* 	int i; */
+/*
+** Gets index of 1st letter of word and returns
+** length of this word, using 'c' as separator.
+*/
 
-/* 	i = 0; */
-/* 	len = 0; */
-/* 	while (s[i] == c) */
-/* 		i++; */
-/* 	while (s[i] != c && s[i] != '\0') */
-/* 	{ */
-/* 		len++; */
-/* 		i++; */
-/* 	} */
-/* 	return (len); */
-/* } */
+static int	get_word_len(char const *s, char c, int i)
+{
+	int len;
+
+	len = 0;
+	while (s[i] != c && s[i] != '\0')
+	{
+		len++;
+		i++;
+	}
+	return (len);
+}
+
+/*
+** Gets index of 1st letter of word and returns
+** index of 1st letter of next word, or index of '\0'.
+*/
+
+static int	get_next_word(char const *s, char c, int i)
+{
+	while (s[i] != c && s[i] != '\0')
+		i++;
+	while (s[i] == c)
+		i++;
+	return (i);
+}
+
+static int	copy_words(char const *s, char c, char **res)
+{
+	int i;
+	int j;
+	int len;
+
+	i = 0;
+	j = 0;
+	while (s[i] == c)
+		i++;
+	if (s[i] == '\0')
+		res[j] = 0;
+	while (s[i])
+	{
+		len = get_word_len(s, c, i);
+		res[j] = ft_strsub(s, i, len);
+		if (!res[j])
+		{
+			i = 0;
+			while (i < j)
+				free(res[i++]);
+			return (0);
+		}
+		j++;
+		i = get_next_word(s, c, i);
+	}
+	return (1);
+}
 
 char		**ft_strsplit(char const *s, char c)
 {
 	char	**res;
-	int		i;
-	int		j;
-	int		from;
-	int		len;
 
 	res = (char **)malloc(sizeof(*res) * (count_size(s, c) + 1));
 	if (!res)
 		return (NULL);
-	i = 0;
-	j = 0;
-	while (j < count_size(s, c))
-	{
-		while (s[i] == c)
-			i++;
-		if (s[i] == '\0')
-			break ;
-		from = i;
-		len = 0;
-		while (s[i] != c && s[i] != '\0')
-		{
-			i++;
-			len++;
-		}
-		res[j] = ft_strsub(s, from, len);
-		if (!res[j])
-			return (NULL);
-		j++;
-	}
-	res[j] = 0;
+	if (!copy_words(s, c, res))
+		return (NULL);
 	return (res);
 }
