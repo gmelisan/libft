@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 13:58:49 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/27 16:59:08 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/11/27 21:20:24 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1952,6 +1952,63 @@ void	test_fd(void)
 	printf("Please invoke 'cat test_fd.txt' to check fd tests\n\n");
 }
 
+void	lstshow(t_list *elem)
+{
+	printf("link: %s\n", (char *)elem->content);
+}
+
+t_list	*lstchange(t_list *elem)
+{
+	*((char *)elem->content) = '?';
+	return (elem);
+}
+
+void	dellink(void *content, size_t size)
+{
+	if (size)
+		free(content);
+}
+
+void	test_lst(void)
+{
+	t_list *lst;
+	t_list *map;
+	
+	printf("=== Testing list funtions === \n");
+	printf("Creating list of strings 'this', 'is', 'the' , 'test'.\n");
+	printf("Using ft_lstnew() and ft_lstadd()\n");
+	lst = ft_lstnew("test!", 6);
+	ft_lstadd(&lst, ft_lstnew("the", 4));
+	ft_lstadd(&lst, ft_lstnew("is", 3));
+	ft_lstadd(&lst, ft_lstnew("this", 5));
+	printf("Let's show the list using ft_lstiter():\n");
+	printf("--Start--\n");
+	ft_lstiter(lst, lstshow);
+	printf("--END--\n");
+	printf("Using ft_lstmap() to create new list\n");
+	printf("Function applied will change first char to '?'\n");
+	map = ft_lstmap(lst, lstchange);
+	printf("Let's show new list using ft_lstiter():\n");
+	printf("--Start--\n");
+	ft_lstiter(map, lstshow);
+	printf("--END--\n");
+	printf("Delete last element using ft_lstdelone():\n");
+	ft_lstdelone(&map->next->next->next, dellink);
+	printf("Checking list using ft_lstiter():\n");
+	printf("--Start--\n");
+	ft_lstiter(map, lstshow);
+	printf("--END--\n");
+	printf("Delete from 2nd to end using ft_lstdel():\n");
+	ft_lstdelone(&map->next, dellink);
+	printf("Checking list using ft_lstiter():\n");
+	printf("--Start--\n");
+	ft_lstiter(map, lstshow);
+	printf("--END--\n");
+	
+	printf("\n");
+}
+
+
 int		main(void)
 {
 	printf("====== PART 1 ======\n");
@@ -2011,5 +2068,7 @@ int		main(void)
 
 	printf("====== PART 3 ======\n");
 
+	test_lst();
+	
 	printf ("done.\n");
 }
