@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 23:15:49 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/27 17:27:16 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/11/28 21:36:30 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ char		**ft_strsplit(char const *s, char c)
 {
 	char	**res;
 
-	res = (char **)malloc(sizeof(*res) * (count_size(s, c) + 1));
+	res = (char **)ft_memalloc(sizeof(*res) * (count_size(s, c) + 1));
 	if (!res)
 		return (NULL);
 	if (!copy_words(s, c, res))
