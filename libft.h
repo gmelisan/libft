@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 13:20:56 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/27 20:07:59 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/11/30 17:01:38 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int					ft_isascii(int c);
 int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
+int					ft_isspace(int c);
 
 /*
 ** Part 2

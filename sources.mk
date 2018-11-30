@@ -6,7 +6,7 @@
 #    By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 13:12:07 by gmelisan          #+#    #+#              #
-#    Updated: 2018/11/27 18:59:53 by gmelisan         ###   ########.fr        #
+#    Updated: 2018/11/30 17:02:24 by gmelisan         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -39,6 +39,7 @@ ft_isascii.c \
 ft_isprint.c \
 ft_toupper.c \
 ft_tolower.c \
+ft_isspace.c \
 ft_memalloc.c \
 ft_memdel.c \
 ft_strnew.c \
@@ -99,6 +100,7 @@ ft_isascii.o \
 ft_isprint.o \
 ft_toupper.o \
 ft_tolower.o \
+ft_isspace.o \
 ft_memalloc.o \
 ft_memdel.o \
 ft_strnew.o \

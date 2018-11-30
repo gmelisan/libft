@@ -6,28 +6,17 @@
 /*   By: gmelisan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 16:53:16 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/27 17:02:42 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/11/30 17:24:33 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_isspace(int c)
+int		ft_atoi(const char *str)
 {
-	if (c == ' ' || c == '\t')
-		return (1);
-	if (c == '\n' || c == '\r')
-		return (1);
-	if (c == '\v' || c == '\f')
-		return (1);
-	return (0);
-}
-
-int			ft_atoi(const char *str)
-{
-	int result;
-	int i;
-	int sign;
+	long	result;
+	int		i;
+	int		sign;
 
 	result = 0;
 	i = 0;
@@ -36,12 +25,11 @@ int			ft_atoi(const char *str)
 		i++;
 	if (!ft_isdigit(str[i]) && str[i] != '+' && str[i] != '-')
 		return (result);
-	if (str[i] == '+')
-		i++;
-	else if (str[i] == '-')
+	if (str[i] == '+' || str[i] == '-')
 	{
+		if (str[i] == '-')
+			sign = -1;
 		i++;
-		sign = -1;
 	}
 	while (ft_isdigit(str[i]))
 	{
