@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 13:20:56 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/30 17:01:38 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/12/04 14:15:33 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
 int					ft_isspace(int c);
+int					ft_abs(int value);
+void				ft_swap(int *a, int *b);
+int					*ft_range(int min, int max);
+int					ft_power(int n, int power);
 
 /*
 ** Part 2

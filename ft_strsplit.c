@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 23:15:49 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/11/28 21:36:30 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/12/04 14:19:32 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,9 @@ char		**ft_strsplit(char const *s, char c)
 	if (!res)
 		return (NULL);
 	if (!copy_words(s, c, res))
+	{
+		free(res);
 		return (NULL);
+	}
 	return (res);
 }

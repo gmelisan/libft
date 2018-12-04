@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_power.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 18:39:51 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/12/04 14:22:23 by gmelisan         ###   ########.fr       */
+/*   Created: 2018/12/04 14:15:39 by gmelisan          #+#    #+#             */
+/*   Updated: 2018/12/04 14:16:55 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-void	ft_memdel(void **ap)
+int		ft_power(int n, int power)
 {
-	if (ap && *ap)
+	int i;
+	int result;
+
+	if (power < 0)
+		return (0);
+	if (power == 0)
+		return (1);
+	i = 0;
+	result = 1;
+	while (i < power)
 	{
-		free(*ap);
-		*ap = NULL;
+		result *= nb;
+		i++;
 	}
+	return (result);	
 }

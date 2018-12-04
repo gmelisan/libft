@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 18:39:51 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/12/04 14:22:23 by gmelisan         ###   ########.fr       */
+/*   Created: 2018/12/04 13:52:39 by gmelisan          #+#    #+#             */
+/*   Updated: 2018/12/04 13:53:53 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-void	ft_memdel(void **ap)
+void	ft_swap(int *a, int *b)
 {
-	if (ap && *ap)
-	{
-		free(*ap);
-		*ap = NULL;
-	}
+	int c;
+
+	c = *a;
+	*a = *b;
+	*b = c;
 }
