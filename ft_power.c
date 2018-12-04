@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 14:15:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2018/12/04 14:16:55 by gmelisan         ###   ########.fr       */
+/*   Updated: 2018/12/04 17:09:15 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ int		ft_power(int n, int power)
 		result *= nb;
 		i++;
 	}
-	return (result);	
+	return (result);
 }
